@@ -58,6 +58,15 @@ public class ListLoaiDoUong {
         }
     }
     
+    public LoaiDoUong findByMa(int ma) {
+        for (LoaiDoUong loaiDoUong : list) {
+            if (loaiDoUong.getMaLoaiDoUong()== ma) {
+                return loaiDoUong;
+            }
+        }
+        return null;
+    }
+    
     public int findMa(String ten) {
         for (LoaiDoUong loaiDoUong : list) {
             if (loaiDoUong.getTenLoaiDoUong() == ten) {

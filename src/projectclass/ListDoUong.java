@@ -60,6 +60,16 @@ public class ListDoUong {
         }
     }
     
+    public ListDoUong findByLoai(int maLoai) {
+        ListDoUong ldu = new ListDoUong();
+        for (DoUong doUong : list) {
+            if (doUong.getMaLoaiDoUong() == maLoai) {
+                ldu.insert(doUong);
+            }
+        }
+        return ldu;
+    }
+    
     public void ghiFile() {
         ReadWriteDoUong rw = new ReadWriteDoUong();
         rw.Write(list, fileName);
