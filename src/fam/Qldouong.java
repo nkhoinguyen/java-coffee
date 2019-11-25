@@ -67,10 +67,8 @@ public class Qldouong extends javax.swing.JFrame {
          
          model.setRowCount(0);
          
-         int stt=1;
          for (DoUong du : lDouong.getList()) {
-             model.addRow(new Object[] {stt,du.getMaDoUong(), lLoai.findTen(du.getMaLoaiDoUong()), du.getTenDoUong(),du.getGia(),du.getSoLuong()});
-             stt++;
+             model.addRow(new Object[] {du.getMaDoUong(), lLoai.findTen(du.getMaLoaiDoUong()), du.getTenDoUong(),du.getGia(),du.getSoLuong()});
          }
     }
     public void clearLoai() {
@@ -102,11 +100,9 @@ public class Qldouong extends javax.swing.JFrame {
          
          model.setRowCount(0);
          
-         int stt = 1;
          for (LoaiDoUong loai : lLoai.getList()) {
              
-             model.addRow(new Object[] {stt, loai.getMaLoaiDoUong(), loai.getTenLoaiDoUong()});
-             stt++;
+             model.addRow(new Object[] {loai.getMaLoaiDoUong(), loai.getTenLoaiDoUong()});
          }
     }
     
