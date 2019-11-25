@@ -426,12 +426,12 @@ public class Qldouong extends javax.swing.JFrame {
         // xóa loại
         try{
             lLoai.delete(khoiTaoLoai());
+            hienThiLoaiDoUong();
             clearLoai();
             
             khoiTaoComboBox();
             
             lLoai.ghiFile();
-            hienThiLoaiDoUong();
 
         }catch(Exception ex)
         {
@@ -477,11 +477,11 @@ public class Qldouong extends javax.swing.JFrame {
         try
         {
             lDouong.delete(khoiTaoDoUong());
-            lDouong.ghiFile();
-            
             hienThiDoUong();
-
+            
             clearDoUong();
+            lDouong.ghiFile();
+
         }
         catch(Exception ex)
         {
