@@ -67,10 +67,9 @@ public class Qldouong extends javax.swing.JFrame {
          
          model.setRowCount(0);
          
-         int stt = 1;
-         
+         int stt=1;
          for (DoUong du : lDouong.getList()) {
-             model.addRow(new Object[] {stt, du.getMaDoUong(), lLoai.findTen(du.getMaLoaiDoUong()), du.getTenDoUong(),du.getGia(),du.getSoLuong()});
+             model.addRow(new Object[] {stt,du.getMaDoUong(), lLoai.findTen(du.getMaLoaiDoUong()), du.getTenDoUong(),du.getGia(),du.getSoLuong()});
              stt++;
          }
     }
@@ -199,6 +198,9 @@ public class Qldouong extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tbl_loai);
+        if (tbl_loai.getColumnModel().getColumnCount() > 0) {
+            tbl_loai.getColumnModel().getColumn(0).setHeaderValue("STT");
+        }
 
         tbl_douong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -214,6 +216,9 @@ public class Qldouong extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tbl_douong);
+        if (tbl_douong.getColumnModel().getColumnCount() > 0) {
+            tbl_douong.getColumnModel().getColumn(0).setHeaderValue("STT");
+        }
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Số lượng");
