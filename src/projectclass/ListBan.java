@@ -32,6 +32,7 @@ public class ListBan {
         for (Ban item : list) {
             if (item.getMaBan() == (ban.getMaBan())) {
                 list.remove(item);
+                return;
             }
         }
     }

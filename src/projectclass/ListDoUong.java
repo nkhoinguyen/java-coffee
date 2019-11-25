@@ -44,6 +44,7 @@ public class ListDoUong {
         for (DoUong doUong : list) {
             if (doUong.getMaDoUong()== loai.getMaDoUong()) {
                 list.remove(doUong);
+                return;
             }
         }
     }

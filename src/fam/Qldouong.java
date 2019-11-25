@@ -74,13 +74,17 @@ public class Qldouong extends javax.swing.JFrame {
              stt++;
          }
     }
-    public void clear() {
+    public void clearLoai() {
+        txt_maloai.setText("");
+        txt_tenloai.setText("");
+    }
+    
+    public void clearDoUong() {
         txt_gia.setText("");
         txt_soluong.setText("");
         txt_tendouong.setText("");
-        txt_gia.setText("");
-        txt_maloai.setText("");
-        txt_tenloai.setText("");
+        txt_madouong.setText("");
+        cmb_maloai.setSelectedItem("");
     }
     
     public LoaiDoUong khoiTaoLoai() {
@@ -189,6 +193,11 @@ public class Qldouong extends javax.swing.JFrame {
                 "STT", "Mã loại", "Tên loại"
             }
         ));
+        tbl_loai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_loaiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_loai);
 
         tbl_douong.setModel(new javax.swing.table.DefaultTableModel(
@@ -199,6 +208,11 @@ public class Qldouong extends javax.swing.JFrame {
                 "STT", "Mã đồ uống", "Loại", "Tên đồ uống", "Giá", "Số lượng"
             }
         ));
+        tbl_douong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_douongMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbl_douong);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -395,12 +409,12 @@ public class Qldouong extends javax.swing.JFrame {
         // thêm loại
         try{
             lLoai.insert(khoiTaoLoai());
+            clearLoai();
             khoiTaoComboBox();
             lLoai.ghiFile();
             
             hienThiLoaiDoUong();
 
-            clear();
         }
         catch(Exception ex)
         {
@@ -412,12 +426,13 @@ public class Qldouong extends javax.swing.JFrame {
         // xóa loại
         try{
             lLoai.delete(khoiTaoLoai());
-            khoiTaoComboBox();
-            lLoai.ghiFile();
+            clearLoai();
             
+            khoiTaoComboBox();
+            
+            lLoai.ghiFile();
             hienThiLoaiDoUong();
 
-           clear();
         }catch(Exception ex)
         {
             JOptionPane.showMessageDialog(this, "Lỗi!!!");
@@ -433,7 +448,7 @@ public class Qldouong extends javax.swing.JFrame {
             
              hienThiLoaiDoUong();
 
-            clear();
+            clearLoai();
         }
         catch(Exception ex)
         {
@@ -449,7 +464,7 @@ public class Qldouong extends javax.swing.JFrame {
             
             hienThiDoUong();
 
-            clear();
+            clearDoUong();
         }catch(Exception ex)
         {
             JOptionPane.showMessageDialog(this, "Lỗi!!!");
@@ -466,7 +481,7 @@ public class Qldouong extends javax.swing.JFrame {
             
             hienThiDoUong();
 
-            clear();
+            clearDoUong();
         }
         catch(Exception ex)
         {
@@ -484,7 +499,7 @@ public class Qldouong extends javax.swing.JFrame {
         
             hienThiDoUong();
 
-            clear();
+            clearDoUong();
         }
         catch(Exception ex)
         {
@@ -492,6 +507,23 @@ public class Qldouong extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_suadouongMouseClicked
+
+    private void tbl_loaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_loaiMouseClicked
+        // TODO add your handling code here:
+        int row = tbl_loai.getSelectedRow();
+        txt_maloai.setText(String.valueOf(lLoai.getList().get(row).getMaLoaiDoUong()));
+        txt_tenloai.setText(lLoai.getList().get(row).getTenLoaiDoUong());
+    }//GEN-LAST:event_tbl_loaiMouseClicked
+
+    private void tbl_douongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_douongMouseClicked
+        // TODO add your handling code here:
+        int row = tbl_douong.getSelectedRow();
+        txt_madouong.setText(String.valueOf(lDouong.getList().get(row).getMaDoUong()));
+        txt_tendouong.setText(lDouong.getList().get(row).getTenDoUong());
+        txt_gia.setText(String.valueOf(lDouong.getList().get(row).getGia()));
+        txt_soluong.setText(String.valueOf(lDouong.getList().get(row).getSoLuong()));
+        cmb_maloai.setSelectedItem(String.valueOf(lLoai.findTen(lDouong.getList().get(row).getMaLoaiDoUong())));
+    }//GEN-LAST:event_tbl_douongMouseClicked
 
     /**
      * @param args the command line arguments
