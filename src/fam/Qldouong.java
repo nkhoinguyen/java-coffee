@@ -19,8 +19,27 @@ import projectclass.LoaiDoUong;
 public class Qldouong extends javax.swing.JFrame {
     
     private ListDoUong lDouong = new ListDoUong();
-    
     private ListLoaiDoUong lLoai = new ListLoaiDoUong();
+    
+    /**
+     * Creates new form NewJFrame3
+     */
+    public Qldouong() {
+        try {
+        initComponents();
+        lLoai.docFile();
+        lDouong.docFile();
+        
+        hienThiLoaiDoUong();
+        hienThiDoUong();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void khoiTaoComboBox() {
+//        String[] loai = 
+    }
     
     public DoUong khoiTaoDoUong() {
         //khai báo
@@ -69,23 +88,18 @@ public class Qldouong extends javax.swing.JFrame {
         
         return loai;
     }
+    
     public void hienThiLoaiDoUong() {
          DefaultTableModel model = (DefaultTableModel)tbl_loai.getModel();
          
          model.setRowCount(0);
          
          int stt = 1;
-         
          for (LoaiDoUong loai : lLoai.getList()) {
+             
              model.addRow(new Object[] {stt, loai.getMaLoaiDoUong(), loai.getTenLoaiDoUong()});
              stt++;
          }
-    }
-    /**
-     * Creates new form NewJFrame3
-     */
-    public Qldouong() {
-        initComponents();
     }
     
     /**
@@ -375,7 +389,8 @@ public class Qldouong extends javax.swing.JFrame {
         // thêm loại
         try{
             lLoai.insert(khoiTaoLoai());
-
+            lLoai.ghiFile();
+            
             hienThiLoaiDoUong();
 
             clear();
@@ -390,7 +405,8 @@ public class Qldouong extends javax.swing.JFrame {
         // xóa loại
         try{
             lLoai.delete(khoiTaoLoai());
-
+            lLoai.ghiFile();
+            
             hienThiLoaiDoUong();
 
            clear();
@@ -404,7 +420,8 @@ public class Qldouong extends javax.swing.JFrame {
         // Sửa
         try{
             lLoai.update(khoiTaoLoai());
-
+            lLoai.ghiFile();
+            
              hienThiLoaiDoUong();
 
             clear();
@@ -419,7 +436,8 @@ public class Qldouong extends javax.swing.JFrame {
         // thêm
         try{
             lDouong.insert(khoiTaoDoUong());
-        
+            lDouong.ghiFile();
+            
             hienThiDoUong();
 
             clear();
@@ -435,7 +453,8 @@ public class Qldouong extends javax.swing.JFrame {
         try
         {
             lDouong.delete(khoiTaoDoUong());
-        
+            lDouong.ghiFile();
+            
             hienThiDoUong();
 
             clear();
@@ -452,6 +471,7 @@ public class Qldouong extends javax.swing.JFrame {
         try
         {
             lDouong.update(khoiTaoDoUong());
+            lDouong.ghiFile();
         
             hienThiDoUong();
 
