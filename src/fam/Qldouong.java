@@ -39,6 +39,7 @@ public class Qldouong extends javax.swing.JFrame {
     }
     
     public void khoiTaoComboBox() {
+        cmb_maloai.removeAllItems();
         for (LoaiDoUong loai : lLoai.getList()) {
             cmb_maloai.addItem(loai.getTenLoaiDoUong());
         }
@@ -394,6 +395,7 @@ public class Qldouong extends javax.swing.JFrame {
         // thêm loại
         try{
             lLoai.insert(khoiTaoLoai());
+            khoiTaoComboBox();
             lLoai.ghiFile();
             
             hienThiLoaiDoUong();
@@ -410,6 +412,7 @@ public class Qldouong extends javax.swing.JFrame {
         // xóa loại
         try{
             lLoai.delete(khoiTaoLoai());
+            khoiTaoComboBox();
             lLoai.ghiFile();
             
             hienThiLoaiDoUong();
@@ -425,6 +428,7 @@ public class Qldouong extends javax.swing.JFrame {
         // Sửa
         try{
             lLoai.update(khoiTaoLoai());
+            khoiTaoComboBox();
             lLoai.ghiFile();
             
              hienThiLoaiDoUong();
