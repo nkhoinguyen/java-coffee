@@ -40,7 +40,6 @@ public class ListBan {
     public void update(Ban ban) {
         for (Ban item : list) {
             if (item.getMaBan()== ban.getMaBan()) {
-                item.setMaBan(ban.getMaBan());
                 item.setTinhTrang(ban.isTinhTrang());
             }
         }

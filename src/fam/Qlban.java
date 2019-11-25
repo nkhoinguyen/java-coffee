@@ -81,12 +81,21 @@ public class Qlban extends javax.swing.JFrame {
 
         tbl_ban.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"1", "A", "Trống"},
+                {"2", "B", "Trống"},
+                {"3", "C", "Trống"},
+                {"4", "D", "Trống"},
+                {"5", "E", "Trống"}
             },
             new String [] {
                 "STT", "Tên bàn", "Trạng thái"
             }
         ));
+        tbl_ban.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_banMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_ban);
 
         btn_them.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -153,6 +162,12 @@ public class Qlban extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_btn_quaylaiMouseClicked
+
+    private void tbl_banMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_banMouseClicked
+        // TODO add your handling code here:
+        Thucdon thucdon = new Thucdon();
+        thucdon.setVisible(true);
+    }//GEN-LAST:event_tbl_banMouseClicked
 
     /**
      * @param args the command line arguments
