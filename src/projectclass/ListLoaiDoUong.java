@@ -57,6 +57,24 @@ public class ListLoaiDoUong {
         }
     }
     
+    public int findMa(String ten) {
+        for (LoaiDoUong loaiDoUong : list) {
+            if (loaiDoUong.getTenLoaiDoUong() == ten) {
+                return loaiDoUong.getMaLoaiDoUong();
+            }
+        }
+        return -1;
+    }
+    
+    public String findTen(int ma) {
+        for (LoaiDoUong loaiDoUong : list) {
+            if (loaiDoUong.getMaLoaiDoUong()== ma) {
+                return loaiDoUong.getTenLoaiDoUong();
+            }
+        }
+        return "";
+    }
+    
     public void ghiFile() {
         ReadWriteLoaiDoUong rw = new ReadWriteLoaiDoUong();
         rw.Write(list, fileName);
