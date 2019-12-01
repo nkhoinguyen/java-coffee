@@ -69,6 +69,7 @@ public class Qlban extends javax.swing.JFrame {
         jLabel1.setText("Quản lí bàn");
 
         btn_quaylai.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btn_quaylai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/left-arrow.png"))); // NOI18N
         btn_quaylai.setText("quay lại");
         btn_quaylai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -110,7 +111,7 @@ public class Qlban extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addComponent(btn_quaylai, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_quaylai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(318, 318, 318))

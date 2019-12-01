@@ -39,6 +39,7 @@ public class Qlchung extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btn_ban.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        btn_ban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/round-table 32.png"))); // NOI18N
         btn_ban.setText("Bàn");
         btn_ban.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -47,9 +48,11 @@ public class Qlchung extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("I:\\Gửi nhờ By Triết\\java-coffee\\src\\icon\\money-bag 32.png")); // NOI18N
         jButton3.setText("Thống kê");
 
         btn_douong.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        btn_douong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/hot-tea 32.png"))); // NOI18N
         btn_douong.setText("Đồ uống");
         btn_douong.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -61,6 +64,7 @@ public class Qlchung extends javax.swing.JFrame {
         jLabel1.setText("Quản lí chung");
 
         btn_thoat.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        btn_thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/exit.png"))); // NOI18N
         btn_thoat.setText("Thoát");
         btn_thoat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -75,22 +79,19 @@ public class Qlchung extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_ban, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3))
-                        .addGap(105, 105, 105)
+                        .addGap(189, 189, 189)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_ban, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btn_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_douong, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(jLabel1)))
-                .addContainerGap(139, Short.MAX_VALUE))
+                            .addComponent(btn_douong))))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_ban, btn_douong});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()

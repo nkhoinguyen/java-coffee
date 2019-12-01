@@ -88,6 +88,7 @@ public class Thucdon extends javax.swing.JFrame {
         jLabel9.setText("Thực đơn");
 
         btn_quaylai.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btn_quaylai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/left-arrow.png"))); // NOI18N
         btn_quaylai.setText("quay lại");
         btn_quaylai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -133,11 +134,11 @@ public class Thucdon extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(btn_quaylai, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(118, 118, 118)
-                                .addComponent(btn_xong, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btn_xong, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(btn_quaylai)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
@@ -226,9 +227,6 @@ public class Thucdon extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_quaylai;
-    private javax.swing.JButton btn_quaylaiban;
-    private javax.swing.JButton btn_quaylaiban1;
-    private javax.swing.JButton btn_quaylaiban2;
     private javax.swing.JButton btn_xong;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
