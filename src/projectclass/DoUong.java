@@ -68,4 +68,8 @@ public class DoUong implements Serializable {
     public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
     }
+    
+    public double getTong(){
+        return getGia() * getSoLuong();
+    }
 }

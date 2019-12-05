@@ -60,8 +60,8 @@ public class Qlban extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_ban = new javax.swing.JTable();
-        btn_them = new javax.swing.JButton();
-        btn_xoa = new javax.swing.JButton();
+        btnChon = new javax.swing.JButton();
+        btnThanhToan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,11 +99,11 @@ public class Qlban extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_ban);
 
-        btn_them.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        btn_them.setText("Thêm");
+        btnChon.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        btnChon.setText("Chọn");
 
-        btn_xoa.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        btn_xoa.setText("Xóa");
+        btnThanhToan.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        btnThanhToan.setText("Thanh toán");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,12 +121,12 @@ public class Qlban extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(36, 36, 36)
-                        .addComponent(txt_maban, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
+                        .addComponent(txt_maban, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(83, 83, 83))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(80, Short.MAX_VALUE))
@@ -149,11 +149,14 @@ public class Qlban extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(txt_maban, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(137, 137, 137))))
         );
+
+        btnChon.getAccessibleContext().setAccessibleName("btnChon");
+        btnThanhToan.getAccessibleContext().setAccessibleName("btnThanhToan");
 
         pack();
         setLocationRelativeTo(null);
@@ -207,9 +210,9 @@ public class Qlban extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChon;
+    private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btn_quaylai;
-    private javax.swing.JButton btn_them;
-    private javax.swing.JButton btn_xoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

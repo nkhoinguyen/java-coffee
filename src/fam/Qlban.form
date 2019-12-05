@@ -36,13 +36,13 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="txt_maban" min="-2" pref="281" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="txt_maban" min="-2" pref="235" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btn_xoa" alignment="1" min="-2" pref="418" max="-2" attributes="0"/>
-                          <Component id="btn_them" min="-2" pref="418" max="-2" attributes="0"/>
+                          <Component id="btnThanhToan" alignment="1" min="-2" pref="418" max="-2" attributes="0"/>
+                          <Component id="btnChon" min="-2" pref="418" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
@@ -73,9 +73,9 @@
                           <Component id="txt_maban" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btn_them" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Component id="btnChon" min="-2" pref="73" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btn_xoa" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Component id="btnThanhToan" min="-2" pref="73" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -179,21 +179,27 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btn_them">
+    <Component class="javax.swing.JButton" name="btnChon">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="20" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
+        <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="btnChon"/>
+      </AccessibilityProperties>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_xoa">
+    <Component class="javax.swing.JButton" name="btnThanhToan">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="20" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
+        <Property name="text" type="java.lang.String" value="Thanh to&#xe1;n"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="btnThanhToan"/>
+      </AccessibilityProperties>
     </Component>
   </SubComponents>
 </Form>
