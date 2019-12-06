@@ -43,6 +43,9 @@ public class HoaDon {
     public void add(DoUong dUong){
         list.add(dUong);
     }
+    public void delete(DoUong doUong){
+        list.remove(doUong);
+    }
     
     public double getTongCong(){
         double dTong = 0;
