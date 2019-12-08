@@ -27,11 +27,13 @@ public class ListDoUong {
     public ArrayList<DoUong> getList() {
         return list;
     }
-
+    
     public void setList(ArrayList<DoUong> list) {
         this.list = list;
     }
-    
+    public void clearList() {
+        this.list.clear();
+    }
     public ArrayList<DoUong> select() {
         return list;
     }
@@ -48,6 +50,7 @@ public class ListDoUong {
             }
         }
     }
+
     
     public void update(DoUong loai) {
         for (DoUong doUong : list) {

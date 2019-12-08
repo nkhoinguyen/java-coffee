@@ -48,8 +48,12 @@ public class Qlchung extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon("I:\\Gửi nhờ By Triết\\java-coffee\\src\\icon\\money-bag 32.png")); // NOI18N
         jButton3.setText("Thống kê");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         btn_douong.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         btn_douong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/hot-tea 32.png"))); // NOI18N
@@ -109,6 +113,7 @@ public class Qlchung extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Hàm thoát chương trình thông báo
@@ -130,7 +135,7 @@ public class Qlchung extends javax.swing.JFrame {
     private void btn_banMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_banMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        Qlban qlban = new  Qlban();
+        Thucdon qlban = new  Thucdon();
         qlban.setVisible(true);
     }//GEN-LAST:event_btn_banMouseClicked
 
@@ -141,6 +146,12 @@ public class Qlchung extends javax.swing.JFrame {
         qldouong.setVisible(true);
 
     }//GEN-LAST:event_btn_douongMouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        this.setVisible(false);
+        Qlban qldouong = new Qlban();
+        qldouong.setVisible(true);
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments

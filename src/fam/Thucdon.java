@@ -75,6 +75,7 @@ public class Thucdon extends javax.swing.JFrame {
     }
     
     public Ban khoitao(){
+        
         int nMa = Integer.parseInt(txtBan.getText());
         boolean tinhTrang = true;
         Ban ban =  new Ban(nMa,tinhTrang,lstChonDoUong);
@@ -267,6 +268,11 @@ public class Thucdon extends javax.swing.JFrame {
 
         btnThanhToan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnThanhToan.setText("Thanh toán");
+        btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThanhToanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -394,7 +400,6 @@ public class Thucdon extends javax.swing.JFrame {
                if(sSoLuong != 0)
                {
                    DoUong dUong = new DoUong(Integer.parseInt(sMa) ,Integer.parseInt(sMaLoai),sTen,Integer.parseInt(sGia),sSoLuong);
-               
                     lstChonDoUong.insert(dUong);
                     spnSl.setValue(0);
                     String s = String.valueOf(lstChonDoUong.tongCong(dUong));
@@ -411,7 +416,8 @@ public class Thucdon extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChonMouseClicked
 
     private void btn_quaylaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_quaylaiMouseClicked
-        // TODO add your handling code here:
+        Qlchung qlChung = new Qlchung();
+        qlChung.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_quaylaiMouseClicked
 
@@ -421,6 +427,9 @@ public class Thucdon extends javax.swing.JFrame {
 
     private void btnXongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXongMouseClicked
         lBan.insert(khoitao());
+        lBan.ghiFile();
+        lstChonDoUong.clearList();
+        hienThiSanPhamDaChon();
         hienThiBan();
     }//GEN-LAST:event_btnXongMouseClicked
 
@@ -442,6 +451,13 @@ public class Thucdon extends javax.swing.JFrame {
     private void tblBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBanMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblBanMouseClicked
+
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+        
+        lBan.delete(khoitao());
+        JOptionPane.showConfirmDialog(this, "Thanh toán thành công");
+        hienThiBan();
+    }//GEN-LAST:event_btnThanhToanActionPerformed
 
     /**
      * @param args the command line arguments

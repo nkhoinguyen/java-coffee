@@ -32,10 +32,10 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         btn_thoat = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
         btn_dangnhap = new javax.swing.JButton();
+        txtPass = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 255, 255));
@@ -51,8 +51,8 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/key.png"))); // NOI18N
         jLabel3.setText("mật khẩu");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField1.setText("admin");
+        txtUser.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtUser.setText("admin");
 
         btn_thoat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/exit.png"))); // NOI18N
@@ -63,8 +63,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setText("123");
-
         btn_dangnhap.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_dangnhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/right-arrow.png"))); // NOI18N
         btn_dangnhap.setText("đăng nhập");
@@ -73,6 +71,9 @@ public class Login extends javax.swing.JFrame {
                 btn_dangnhapMouseClicked(evt);
             }
         });
+
+        txtPass.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtPass.setText("123");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,9 +91,9 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel2))
                             .addGap(36, 36, 36)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(btn_dangnhap)
@@ -108,11 +109,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,9 +127,17 @@ public class Login extends javax.swing.JFrame {
 
     private void btn_dangnhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_dangnhapMouseClicked
         // hiển thị Ql chung
-        this.setVisible(false);
-        Qlchung qlchung = new Qlchung();
-        qlchung.setVisible(true);
+        String sUser = "admin";
+        String sPass = "123";
+        if(txtPass.getText() == sPass & txtUser.getText() == sUser){
+            JOptionPane.showConfirmDialog(this, "Đăng nhập thành công");
+            this.setVisible(false);
+            Qlchung qlchung = new Qlchung();
+            qlchung.setVisible(true);
+        }else{
+            JOptionPane.showConfirmDialog(this, "Đăng nhập thất bại");
+        }
+        
     }//GEN-LAST:event_btn_dangnhapMouseClicked
     /**
      * Hàm thoát chương trình thông báo
@@ -190,7 +199,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtPass;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

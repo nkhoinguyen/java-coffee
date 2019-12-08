@@ -6,6 +6,7 @@
 package fam;
 
 import javax.swing.table.DefaultTableModel;
+import projectclass.Ban;
 import projectclass.ListBan;
 import projectclass.ListDoUong;
 import projectclass.LoaiDoUong;
@@ -21,30 +22,22 @@ public class Qlban extends javax.swing.JFrame {
      */
     public Qlban() {
         lBan.docFile();
+        //hienThiBan();
         initComponents();
     }
-//    public Ban khoiTaoBan() {
-//        //khai báo
-//         int nMaban = Integer.parseInt(txt_maban.getText());
-//        
-//        boolean bTinhtrang = false;
-//        
-//        Ban ban = new Ban(nMaban,bTinhtrang);
-//        
-//        return ban;
-//    }
-//    public void hienThiBan() {
-//         DefaultTableModel model = (DefaultTableModel)tbl_ban.getModel();
-//         
-//         model.setRowCount(0);
-//         
-//         int stt = 1;
-//         
-//         for (Ban ban : lBan.getList()) {
-//             model.addRow(new Object[] {stt, loai.getMaLoaiDoUong(), loai.getTenLoaiDoUong()});
-//             stt++;
-//         }
-//    }
+
+    public void hienThiBan() {
+         DefaultTableModel model = (DefaultTableModel)tbl_ban.getModel();
+         
+         model.setRowCount(0);
+         
+         int stt = 1;
+         
+         for (Ban ban : lBan.getList()) {
+             model.addRow(new Object[] {stt, ban.getMaBan(), ban.isTinhTrang()});
+             stt++;
+         }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,17 +49,13 @@ public class Qlban extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         btn_quaylai = new javax.swing.JButton();
-        txt_maban = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_ban = new javax.swing.JTable();
-        btnChon = new javax.swing.JButton();
-        btnThanhToan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("Quản lí bàn");
+        jLabel1.setText("Quản lí hóa đơn");
 
         btn_quaylai.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btn_quaylai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/left-arrow.png"))); // NOI18N
@@ -77,19 +66,12 @@ public class Qlban extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Mã bàn");
-
         tbl_ban.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "A", "Trống"},
-                {"2", "B", "Trống"},
-                {"3", "C", "Trống"},
-                {"4", "D", "Trống"},
-                {"5", "E", "Trống"}
+
             },
             new String [] {
-                "STT", "Tên bàn", "Trạng thái"
+                "STT", "Tên bàn", "Ngày"
             }
         ));
         tbl_ban.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,64 +81,33 @@ public class Qlban extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_ban);
 
-        btnChon.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        btnChon.setText("Chọn");
-
-        btnThanhToan.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        btnThanhToan.setText("Thanh toán");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(btn_quaylai)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(318, 318, 318))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(36, 36, 36)
-                        .addComponent(txt_maban, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83))
+                        .addGap(56, 56, 56)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                        .addGap(35, 35, 35)
+                        .addComponent(btn_quaylai)
+                        .addGap(87, 87, 87)
+                        .addComponent(jLabel1)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(btn_quaylai, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(39, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txt_maban, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(137, 137, 137))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_quaylai, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
-
-        btnChon.getAccessibleContext().setAccessibleName("btnChon");
-        btnThanhToan.getAccessibleContext().setAccessibleName("btnThanhToan");
 
         pack();
         setLocationRelativeTo(null);
@@ -165,6 +116,8 @@ public class Qlban extends javax.swing.JFrame {
     private void btn_quaylaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_quaylaiMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
+        Qlchung qlChung = new Qlchung();
+        qlChung.setVisible(true);
     }//GEN-LAST:event_btn_quaylaiMouseClicked
 
     private void tbl_banMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_banMouseClicked
@@ -210,13 +163,9 @@ public class Qlban extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnChon;
-    private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btn_quaylai;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_ban;
-    private javax.swing.JTextField txt_maban;
     // End of variables declaration//GEN-END:variables
 }
