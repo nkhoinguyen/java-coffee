@@ -59,7 +59,13 @@ public class ListDoUong {
             }
         }
     }
-    
+    public double tongCong(DoUong loai){
+        double dTong = 0.0;
+        for(DoUong doUong : list){
+            dTong += doUong.getTong();
+        }
+        return dTong;
+    }
     public ListDoUong findByLoai(int maLoai) {
         ListDoUong ldu = new ListDoUong();
         for (DoUong doUong : list) {

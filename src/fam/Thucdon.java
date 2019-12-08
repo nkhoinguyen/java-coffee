@@ -8,6 +8,7 @@ package fam;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import projectclass.Ban;
 import projectclass.DoUong;
 import projectclass.HoaDon;
 import projectclass.ListBan;
@@ -20,10 +21,16 @@ import projectclass.LoaiDoUong;
  * @author Admin
  */
 public class Thucdon extends javax.swing.JFrame {
+    
     private ListDoUong lDouong = new ListDoUong();
+    private ListDoUong lstChonDoUong = new ListDoUong();
+    
     private ListLoaiDoUong lLoai = new ListLoaiDoUong();
 
     private HoaDon hoaDon = new HoaDon();
+    
+    private ListBan lBan = new ListBan();
+    
     private ArrayList<DoUong> list = new ArrayList<DoUong>();
     /**
      * Creates new form Thucdon
@@ -57,11 +64,32 @@ public class Thucdon extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel)tblChonDoUong.getModel();
         
         model.setRowCount(0);
+
+        int stt = 1;
+        for(DoUong douong : lstChonDoUong.getList())
+        {
+
+            model.addRow(new Object[] {stt,douong.getMaDoUong(), douong.getTenDoUong(),douong.getSoLuong(),douong.getTong()});
+            stt++;
+        }
+    }
+    
+    public Ban khoitao(){
+        int nMa = Integer.parseInt(txtBan.getText());
+        boolean tinhTrang = true;
+        Ban ban =  new Ban(nMa,tinhTrang,lstChonDoUong);
+        return ban;
+    }
+    
+    public void hienThiBan(){
+        DefaultTableModel model = (DefaultTableModel)tblBan.getModel();
+        
+        model.setRowCount(0);
         
         int stt = 1;
-        for(DoUong douong : hoaDon.getListDoUong())
+        for(Ban douong : lBan.getList())
         {
-            model.addRow(new Object[] {stt,douong.getMaDoUong(), douong.getTenDoUong(),douong.getSoLuong(),douong.getTong()});
+            model.addRow(new Object[] {stt,douong.getMaBan(), douong.isTinhTrang()});
             stt++;
         }
     }
@@ -90,6 +118,12 @@ public class Thucdon extends javax.swing.JFrame {
         btnXoa = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblBan = new javax.swing.JTable();
+        jLabel13 = new javax.swing.JLabel();
+        txtBan = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btnThanhToan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +149,10 @@ public class Thucdon extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tblDoUong);
+        if (tblDoUong.getColumnModel().getColumnCount() > 0) {
+            tblDoUong.getColumnModel().getColumn(3).setHeaderValue("Tên đồ uống");
+            tblDoUong.getColumnModel().getColumn(4).setHeaderValue("Giá");
+        }
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/hot-tea 32.png"))); // NOI18N
@@ -196,6 +234,40 @@ public class Thucdon extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel12.setText("Thức uống");
 
+        tblBan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "STT", "Mã Bàn", "Tình trạng"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblBan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBanMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tblBan);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel13.setText("Bàn");
+
+        txtBan.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Nhập mã bàn");
+
+        btnThanhToan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnThanhToan.setText("Thanh toán");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,17 +295,34 @@ public class Thucdon extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(btn_quaylai)
-                .addGap(281, 281, 281)
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(211, 211, 211)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addGap(165, 165, 165))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(btn_quaylai)
+                        .addGap(281, 281, 281)
+                        .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(btnThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(236, 236, 236)
+                        .addComponent(jLabel13)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,22 +336,35 @@ public class Thucdon extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtTongCong, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(spnSl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnXong, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(192, 192, 192)
+                        .addComponent(btnXong, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(1, 1, 1)
+                            .addComponent(jLabel13)
+                            .addGap(2, 2, 2)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel7)
+                                .addComponent(txtTongCong, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10)
+                                .addComponent(spnSl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(45, 45, 45)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtBan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1))
+                            .addGap(32, 32, 32)
+                            .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))))
                 .addGap(24, 24, 24))
         );
 
@@ -277,7 +379,7 @@ public class Thucdon extends javax.swing.JFrame {
     private void btnChonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChonMouseClicked
         try {
 
-                DefaultTableModel model = (DefaultTableModel)tblDoUong.getModel();
+               DefaultTableModel model = (DefaultTableModel)tblDoUong.getModel();
                
                int selectedRowIndex = tblDoUong.getSelectedRow();
                
@@ -286,21 +388,25 @@ public class Thucdon extends javax.swing.JFrame {
                String sMaLoai = model.getValueAt(selectedRowIndex, 2).toString();
                String sTen = model.getValueAt(selectedRowIndex, 3).toString();
                String sGia = model.getValueAt(selectedRowIndex, 4).toString();
+               
                int sSoLuong = (Integer)spnSl.getValue();
                
-               DoUong dUong = new DoUong(Integer.parseInt(sMa) ,Integer.parseInt(sMaLoai),sTen,Integer.parseInt(sGia),sSoLuong);
+               if(sSoLuong != 0)
+               {
+                   DoUong dUong = new DoUong(Integer.parseInt(sMa) ,Integer.parseInt(sMaLoai),sTen,Integer.parseInt(sGia),sSoLuong);
                
-               hoaDon.add(dUong);
-               spnSl.setValue(0);
-               String s = String.valueOf(hoaDon.getTongCong());
-               txtTongCong.setText(s);
-               hienThiSanPhamDaChon();
+                    lstChonDoUong.insert(dUong);
+                    spnSl.setValue(0);
+                    String s = String.valueOf(lstChonDoUong.tongCong(dUong));
+                    txtTongCong.setText(s);
+                    hienThiSanPhamDaChon();
+               }
+               else{
+                   JOptionPane.showMessageDialog(this, "Nhập số lượng");
+               }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
-        
-        
-        
         hienThiSanPhamDaChon();
     }//GEN-LAST:event_btnChonMouseClicked
 
@@ -314,7 +420,8 @@ public class Thucdon extends javax.swing.JFrame {
     }//GEN-LAST:event_tblChonDoUongMouseClicked
 
     private void btnXongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXongMouseClicked
-        // TODO add your handling code here:
+        lBan.insert(khoitao());
+        hienThiBan();
     }//GEN-LAST:event_btnXongMouseClicked
 
     private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
@@ -331,6 +438,10 @@ public class Thucdon extends javax.swing.JFrame {
 //        //hoaDon.delete();
         
     }//GEN-LAST:event_btnXoaMouseClicked
+
+    private void tblBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBanMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblBanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -369,19 +480,25 @@ public class Thucdon extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChon;
+    private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnXong;
     private javax.swing.JButton btn_quaylai;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner spnSl;
+    private javax.swing.JTable tblBan;
     private javax.swing.JTable tblChonDoUong;
     private javax.swing.JTable tblDoUong;
+    private javax.swing.JTextField txtBan;
     private javax.swing.JTextField txtTongCong;
     // End of variables declaration//GEN-END:variables
 }
