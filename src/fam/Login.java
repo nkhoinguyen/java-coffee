@@ -127,9 +127,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btn_dangnhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_dangnhapMouseClicked
         // hiển thị Ql chung
-        String sUser = "admin";
-        String sPass = "123";
-        if(txtPass.getText() == sPass & txtUser.getText() == sUser){
+        if(txtUser.getText().equals("admin") && txtPass.getText().equals("123")){
             JOptionPane.showConfirmDialog(this, "Đăng nhập thành công");
             this.setVisible(false);
             Qlchung qlchung = new Qlchung();

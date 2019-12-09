@@ -149,7 +149,7 @@ public class Qlchung extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         this.setVisible(false);
-        Qlban qldouong = new Qlban();
+        QlHoaDon qldouong = new QlHoaDon();
         qldouong.setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
 

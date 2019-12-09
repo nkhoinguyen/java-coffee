@@ -15,22 +15,23 @@ import projectclass.LoaiDoUong;
  *
  * @author Admin
  */
-public class Qlban extends javax.swing.JFrame {
+public class QlHoaDon extends javax.swing.JFrame {
     private ListBan lBan = new ListBan();
     /**
      * Creates new form NewJFrame2
      */
-    public Qlban() {
+    public QlHoaDon() {
         lBan.docFile();
         //hienThiBan();
         initComponents();
     }
-
+    
     public void hienThiBan() {
          DefaultTableModel model = (DefaultTableModel)tbl_ban.getModel();
          
          model.setRowCount(0);
-         
+//         ListDoUong listDoUong = new ListDoUong();
+//         listDoUong.tongCong();
          int stt = 1;
          
          for (Ban ban : lBan.getList()) {
@@ -71,7 +72,7 @@ public class Qlban extends javax.swing.JFrame {
 
             },
             new String [] {
-                "STT", "Tên bàn", "Ngày"
+                "STT", "Tên bàn", "Thành Tiền", "Ngày"
             }
         ));
         tbl_ban.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -143,21 +144,23 @@ public class Qlban extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Qlban.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QlHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Qlban.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QlHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Qlban.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QlHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Qlban.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QlHoaDon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Qlban().setVisible(true);
+                new QlHoaDon().setVisible(true);
             }
         });
     }

@@ -453,10 +453,14 @@ public class Thucdon extends javax.swing.JFrame {
     }//GEN-LAST:event_tblBanMouseClicked
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+        try{
+            lBan.delete(khoitao());
+            JOptionPane.showConfirmDialog(this, "Thanh toán thành công");
+            hienThiBan();
+        }catch(Exception ex){
+            JOptionPane.showConfirmDialog(this, ex);
+        }
         
-        lBan.delete(khoitao());
-        JOptionPane.showConfirmDialog(this, "Thanh toán thành công");
-        hienThiBan();
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     /**

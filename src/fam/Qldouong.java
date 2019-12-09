@@ -156,6 +156,11 @@ public class Qldouong extends javax.swing.JFrame {
         btn_quaylai.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btn_quaylai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/left-arrow.png"))); // NOI18N
         btn_quaylai.setText("quay lại");
+        btn_quaylai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_quaylaiMouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Tên loại");
@@ -191,7 +196,7 @@ public class Qldouong extends javax.swing.JFrame {
 
             },
             new String [] {
-                "STT", "Mã loại", "Tên loại"
+                "Mã loại", "Tên loại"
             }
         ));
         tbl_loai.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -200,16 +205,13 @@ public class Qldouong extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tbl_loai);
-        if (tbl_loai.getColumnModel().getColumnCount() > 0) {
-            tbl_loai.getColumnModel().getColumn(0).setHeaderValue("STT");
-        }
 
         tbl_douong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "STT", "Mã đồ uống", "Loại", "Tên đồ uống", "Giá", "Số lượng"
+                "Mã đồ uống", "Loại", "Tên đồ uống", "Giá", "Số lượng"
             }
         ));
         tbl_douong.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -218,9 +220,6 @@ public class Qldouong extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tbl_douong);
-        if (tbl_douong.getColumnModel().getColumnCount() > 0) {
-            tbl_douong.getColumnModel().getColumn(0).setHeaderValue("STT");
-        }
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Số lượng");
@@ -594,6 +593,14 @@ public class Qldouong extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btn_timDoUongMouseClicked
+
+    private void btn_quaylaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_quaylaiMouseClicked
+        
+        Qlchung qlchung = new Qlchung();
+        qlchung.setVisible(true);
+        this.setVisible(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_quaylaiMouseClicked
 
     /**
      * @param args the command line arguments
