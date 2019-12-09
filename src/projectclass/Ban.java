@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Ban implements Serializable {
     private int maBan;
     private boolean tinhTrang;
-    private ListDoUong list;
+    private ListDoUong list; 
 
     public Ban() {
         tinhTrang = false;

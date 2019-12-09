@@ -5,6 +5,7 @@
  */
 package projectclass;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,7 +13,7 @@ import java.util.Comparator;
  *
  * @author MT
  */
-public class ListDoUong {
+public class ListDoUong implements Serializable {
     private ArrayList<DoUong> list;
     final  String fileName = "DoUong.txt";
 
