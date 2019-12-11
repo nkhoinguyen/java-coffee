@@ -5,56 +5,56 @@
  */
 package projectclass;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
  *
  * @author Admin
  */
-public class HoaDon {
+public class HoaDon implements Serializable {
+    private String maHD;
     private Ban ban;
-    private ArrayList<DoUong> list;
+    private String ngay;
     
-    public HoaDon(){
-        list = new ArrayList<>();
-    }
-    
-    public HoaDon(Ban ban){
-        list = new ArrayList<DoUong>();
+    public HoaDon(String maHD, Ban ban) {
+        this.maHD = maHD;
         this.ban = ban;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();   
+        this.ngay = dtf.format(now);
     }
-    
-    public  ArrayList<DoUong> getListDoUong(){
-        return list;
+
+    public HoaDon() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();   
+        this.ngay = dtf.format(now);
     }
-    
-     public void setList(ArrayList<DoUong> list) {
-        this.list = list;
-    }
-     
-     public Ban getBan() {
+
+    public Ban getBan() {
         return ban;
     }
 
-    public void setBan(Ban ban) {   
+    public String getNgay() {
+        return ngay;
+    }
+
+    public void setBan(Ban ban) {
         this.ban = ban;
     }
-    
-    public void add(DoUong dUong){
-        list.add(dUong);
+
+    public void setNgay(String ngay) {
+        this.ngay = ngay;
     }
-    public void delete(DoUong doUong){
-        list.remove(doUong);
+
+    public String getMaHD() {
+        return maHD;
     }
-    
-    public double getTongCong(){
-        double dTong = 0;
-        for(DoUong item : list)
-        {
-            dTong += item.getTong();
-        }
-        return dTong;
+
+    public void setMaHD(String maHD) {
+        this.maHD = maHD;
     }
-    
-    
+     
 }
