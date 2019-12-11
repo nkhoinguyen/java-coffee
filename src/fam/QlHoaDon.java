@@ -30,10 +30,10 @@ public class QlHoaDon extends javax.swing.JFrame {
      */
     public QlHoaDon() {
         try{
-        initComponents();
-        lHoaDon.docFile();
-        lBan.docFile();
-        hienThiHoaDon();
+            initComponents();
+            lHoaDon.docFile();
+            lBan.docFile();
+            hienThiHoaDon();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex);
         }
@@ -228,6 +228,7 @@ public class QlHoaDon extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_quaylaiMouseClicked
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
+        try{
         DefaultTableModel model = (DefaultTableModel) tblDoUong.getModel();
         model.setRowCount(0);
         int r = tblHoaDon.getSelectedRow();
@@ -238,6 +239,9 @@ public class QlHoaDon extends javax.swing.JFrame {
         }
         txtTongCong.setText(String.valueOf(lHoaDon.getList().get(r).getBan().getList().tongCong()));
         txtBan.setText(String.valueOf(lHoaDon.getList().get(r).getBan().getMaBan()));
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Lỗi");
+        }
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void tblDoUongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoUongMouseClicked
@@ -251,8 +255,12 @@ public class QlHoaDon extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_quaylaiActionPerformed
 
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
-        lHoaDon.findTen(txtTim.getText());
-        hienThiHoaDon();
+        try{
+            lHoaDon.findTen(txtTim.getText());
+            hienThiHoaDon();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Tìm không thấy");
+        }
     }//GEN-LAST:event_btnTimActionPerformed
 
     /**

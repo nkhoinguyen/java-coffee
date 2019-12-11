@@ -500,6 +500,7 @@ public class Thucdon extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        try{
         int rowBan = tblBan.getSelectedRow();
         lBan.getList().get(rowBan).getList().delete(dUong);
         lBan.getList().get(rowBan).getList().tongCong();
@@ -508,20 +509,28 @@ public class Thucdon extends javax.swing.JFrame {
         lBan.ghiFile();
         lBan.docFile();
         hienThiSanPhamDaChon();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Xóa thất bại");
+        }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
-        String tenLoai = (String) cmb_maloai.getSelectedItem();
-        if (cmb_maloai.getSelectedIndex() == 0) hienThiDoUong();
-        else {
-            ListDoUong lduFind = lDouong.findByLoai(lLoai.findMa(tenLoai));
-            DefaultTableModel model = (DefaultTableModel)tblDoUong.getModel();
+        try{
+            String tenLoai = (String) cmb_maloai.getSelectedItem();
+            if (cmb_maloai.getSelectedIndex() == 0) hienThiDoUong();
+            else {
+                ListDoUong lduFind = lDouong.findByLoai(lLoai.findMa(tenLoai));
+                DefaultTableModel model = (DefaultTableModel)tblDoUong.getModel();
 
-            model.setRowCount(0);
+                model.setRowCount(0);
 
-            for (DoUong du : lduFind.getList()) {
-                model.addRow(new Object[] {du.getMaDoUong(), lLoai.findTen(du.getMaLoaiDoUong()), du.getTenDoUong(),du.getGia(),du.getSoLuong()});
+                for (DoUong du : lduFind.getList()) {
+                    model.addRow(new Object[] {du.getMaDoUong(), lLoai.findTen(du.getMaLoaiDoUong()), du.getTenDoUong(),du.getGia(),du.getSoLuong()});
+                }
             }
+        }catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(this, "Tìm không thấy");
         }
     }//GEN-LAST:event_btnTimActionPerformed
 
