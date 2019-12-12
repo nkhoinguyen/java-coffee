@@ -22,13 +22,13 @@ public class HoaDon implements Serializable {
     public HoaDon(String maHD, Ban ban) {
         this.maHD = maHD;
         this.ban = ban;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
         LocalDateTime now = LocalDateTime.now();   
         this.ngay = dtf.format(now);
     }
 
     public HoaDon() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
         LocalDateTime now = LocalDateTime.now();   
         this.ngay = dtf.format(now);
     }

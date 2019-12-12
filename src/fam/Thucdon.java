@@ -27,14 +27,7 @@ public class Thucdon extends javax.swing.JFrame {
     private ListBan lBan = new ListBan();
     private ListLoaiDoUong lLoai = new ListLoaiDoUong();
     
-    private ListDoUong lstChonDoUong = new ListDoUong();
-    
-    DoUong dUong;
-
     private ListHoaDon lHoaDon = new ListHoaDon();
-    private HoaDon hoaDon = new HoaDon();
-    
-    
     
     /**
      * Creates new form Thucdon
@@ -54,6 +47,32 @@ public class Thucdon extends javax.swing.JFrame {
         }
     }
     
+    public DoUong khoiTaoDU() {
+        int rowDU = tblDoUong.getSelectedRow();
+               
+        int ma = lDouong.getList().get(rowDU).getMaDoUong();
+        int maLoai = lDouong.getList().get(rowDU).getMaLoaiDoUong();
+        String ten = lDouong.getList().get(rowDU).getTenDoUong();
+        int gia = lDouong.getList().get(rowDU).getGia();
+
+        
+        int soLuong = (Integer)spnSl.getValue();
+        return new DoUong(ma , maLoai, ten, gia, soLuong);
+    }
+    
+    public DoUong khoiTaoDUChon() {
+        int rowDU = tblChonDoUong.getSelectedRow();
+        int row = tblBan.getSelectedRow();
+        
+        int ma = lBan.getList().get(row).getList().getList().get(rowDU).getMaDoUong();
+        int maLoai = lBan.getList().get(row).getList().getList().get(rowDU).getMaLoaiDoUong();
+        String ten = lBan.getList().get(row).getList().getList().get(rowDU).getTenDoUong();
+        int gia = lBan.getList().get(row).getList().getList().get(rowDU).getGia();
+        int soLuong = lBan.getList().get(row).getList().getList().get(rowDU).getSoLuong();
+        
+        return new DoUong(ma , maLoai, ten, gia, soLuong);
+    }
+    
     public void khoiTaoComboBox() {
         cmb_maloai.removeAllItems();
         cmb_maloai.addItem("Tất cả");
@@ -68,10 +87,8 @@ public class Thucdon extends javax.swing.JFrame {
         
          model.setRowCount(0);
 
-         int stt=1;
          for (DoUong du : lDouong.getList()) {
-             model.addRow(new Object[] {stt,du.getMaDoUong(),du.getMaLoaiDoUong(), du.getTenDoUong(),du.getGia()});
-             stt++;
+             model.addRow(new Object[] {du.getMaDoUong(), du.getTenDoUong(), lLoai.findTen(du.getMaLoaiDoUong()), du.getGia()});
          }
     }
     
@@ -81,10 +98,10 @@ public class Thucdon extends javax.swing.JFrame {
 
         int r = tblBan.getSelectedRow();
         int stt = 1;
+        txtTongCong.setText(String.valueOf(lBan.getList().get(r).getList().tongCong()));
         for(DoUong douong : lBan.getList().get(r).getList().getList())
         {
-            model.addRow(new Object[] {stt,douong.getMaDoUong(), douong.getTenDoUong(),douong.getSoLuong(),douong.getTong()});
-            stt++;
+            model.addRow(new Object[] {stt, douong.getMaDoUong(), douong.getTenDoUong(), douong.getSoLuong(), douong.getTong()});
         }
     }
     
@@ -138,11 +155,11 @@ public class Thucdon extends javax.swing.JFrame {
 
             },
             new String [] {
-                "STT", "Mã đồ uống", "Mã loại", "Tên đồ uống", "Giá"
+                "Mã đồ uống", "Tên đồ uống", "Loại", "Giá"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -155,10 +172,6 @@ public class Thucdon extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tblDoUong);
-        if (tblDoUong.getColumnModel().getColumnCount() > 0) {
-            tblDoUong.getColumnModel().getColumn(3).setHeaderValue("Tên đồ uống");
-            tblDoUong.getColumnModel().getColumn(4).setHeaderValue("Giá");
-        }
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/hot-tea 32.png"))); // NOI18N
@@ -177,6 +190,11 @@ public class Thucdon extends javax.swing.JFrame {
         btnChon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnChonMouseClicked(evt);
+            }
+        });
+        btnChon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChonActionPerformed(evt);
             }
         });
 
@@ -272,6 +290,11 @@ public class Thucdon extends javax.swing.JFrame {
 
         btnThanhToan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnThanhToan.setText("Thanh toán");
+        btnThanhToan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnThanhToanMouseClicked(evt);
+            }
+        });
         btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThanhToanActionPerformed(evt);
@@ -417,40 +440,34 @@ public class Thucdon extends javax.swing.JFrame {
 
     private void btnChonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChonMouseClicked
         try {
+            DoUong du = khoiTaoDU();
+            if(du.getSoLuong() != 0)
+            {
+                int row = tblBan.getSelectedRow();
+                int check = 0;
+                for (DoUong doUong : lBan.getList().get(row).getList().getList()) {
+                    if (doUong.getMaDoUong() == du.getMaDoUong()) {
+                        doUong.setSoLuong(doUong.getSoLuong() + du.getSoLuong());
+                        check = 1;
+                        break;
+                    }
+                }
+                if (check == 0) lBan.getList().get(row).getList().insert(du);
 
-               DefaultTableModel model = (DefaultTableModel)tblDoUong.getModel();
-               
-               int selectedRowIndex = tblDoUong.getSelectedRow();
-               
-               String stt = model.getValueAt(selectedRowIndex,0).toString();
-               String sMa = model.getValueAt(selectedRowIndex, 1).toString();
-               String sMaLoai = model.getValueAt(selectedRowIndex, 2).toString();
-               String sTen = model.getValueAt(selectedRowIndex, 3).toString();
-               String sGia = model.getValueAt(selectedRowIndex, 4).toString();
-               
-               int sSoLuong = (Integer)spnSl.getValue();
-               
-               if(sSoLuong != 0)
-               {
-                    dUong = new DoUong(Integer.parseInt(sMa) ,Integer.parseInt(sMaLoai),sTen,Integer.parseInt(sGia),sSoLuong);
-                    spnSl.setValue(0);
+                txtTongCong.setText(String.valueOf(lBan.getList().get(row).getList().tongCong()));
 
-                    int row = tblBan.getSelectedRow();
-                    lBan.getList().get(row).getList().insert(dUong);
-                    
-                    String s = String.valueOf(lBan.getList().get(row).getList().tongCong());
-                    
-                    txtTongCong.setText(s);
-                    hienThiSanPhamDaChon();
-                    lBan.getList().get(row).setTinhTrang(true);
-                    lBan.ghiFile();
-                    lBan.docFile();
-                    hienThiBan();
-
-               }
-               else{
-                   JOptionPane.showMessageDialog(this, "Nhập số lượng");
-               }
+                lBan.getList().get(row).setTinhTrang(true);
+                lBan.ghiFile();
+                lBan.docFile();
+                hienThiBan();
+                spnSl.setValue(0);
+                
+                tblBan.setRowSelectionInterval(row, row);
+                hienThiSanPhamDaChon();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Nhập số lượng");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "thêm thất bại");
         }
@@ -472,44 +489,32 @@ public class Thucdon extends javax.swing.JFrame {
 
     private void tblBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBanMouseClicked
         // TODO add your handling code here:
+        hienThiSanPhamDaChon();
     }//GEN-LAST:event_tblBanMouseClicked
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
 
-        try{
-            
-            int r = tblBan.getSelectedRow();
-            hoaDon = new HoaDon(txtMaHD.getText(), lBan.getList().get(r));
-            lHoaDon.insert(hoaDon);
-            lHoaDon.ghiFile();
-            lBan.getList().get(r).getList().clearList();
-            lBan.getList().get(r).setTinhTrang(false);
-            lBan.ghiFile();
-            lBan.docFile();
-            DefaultTableModel moDel = (DefaultTableModel)tblBan.getModel();
-            moDel.setRowCount(0);
-            hienThiBan();
-            //hienThiSanPhamDaChon();
-            txtTongCong.setText("");
-            JOptionPane.showMessageDialog(this, "Thanh toán thành công");
-            
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this, "Lỗi thanh toán"+ex);
-        }
-        
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        try{
+        DoUong du = khoiTaoDUChon();
+        try {
         int rowBan = tblBan.getSelectedRow();
-        lBan.getList().get(rowBan).getList().delete(dUong);
-        lBan.getList().get(rowBan).getList().tongCong();
-        String s = String.valueOf(lBan.getList().get(rowBan).getList().tongCong());
-        txtTongCong.setText(s);
+        lBan.getList().get(rowBan).getList().delete(du);
+        
+        txtTongCong.setText(String.valueOf(lBan.getList().get(rowBan).getList().tongCong()));
+         
+        hienThiSanPhamDaChon();
+        
+        int sl = lBan.getList().get(rowBan).getList().getList().size();
+        if (sl == 0) {
+            lBan.getList().get(rowBan).setTinhTrang(false);
+        }
+        
         lBan.ghiFile();
         lBan.docFile();
-        hienThiSanPhamDaChon();
-        }catch(Exception ex){
+        hienThiBan();
+        } catch(Exception ex){
             JOptionPane.showMessageDialog(this, "Xóa thất bại");
         }
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -533,6 +538,31 @@ public class Thucdon extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Tìm không thấy");
         }
     }//GEN-LAST:event_btnTimActionPerformed
+
+    private void btnChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnChonActionPerformed
+
+    private void btnThanhToanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToanMouseClicked
+        try {
+            int r = tblBan.getSelectedRow();
+            lHoaDon.docFile();
+            lHoaDon.insert(new HoaDon(txtMaHD.getText(), lBan.getList().get(r)));
+            lHoaDon.ghiFile();
+            lBan.getList().get(r).getList().clearList();
+            lBan.getList().get(r).setTinhTrang(false);
+            lBan.ghiFile();
+            lBan.docFile();
+            
+            hienThiBan();
+            tblBan.setRowSelectionInterval(r, r);
+            hienThiSanPhamDaChon();
+            txtTongCong.setText("");
+            JOptionPane.showMessageDialog(this, "Thanh toán thành công");
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Lỗi thanh toán"+ex);
+        }
+    }//GEN-LAST:event_btnThanhToanMouseClicked
 
     /**
      * @param args the command line arguments

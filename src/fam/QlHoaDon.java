@@ -24,7 +24,6 @@ public class QlHoaDon extends javax.swing.JFrame {
     private ListBan lBan = new ListBan();
     private ListDoUong lDoUong = new ListDoUong();
 
-    private Ban ban;
     /**
      * Creates new form NewJFrame2
      */
@@ -45,7 +44,7 @@ public class QlHoaDon extends javax.swing.JFrame {
          model.setRowCount(0);
          //int index =0;
          for (HoaDon hd : lHoaDon.getList()) {
-             model.addRow(new Object[] {hd.getMaHD(),hd.getBan().getList().tongCong(),hd.getNgay()});
+             model.addRow(new Object[] {hd.getMaHD(), hd.getBan().getMaBan(), hd.getBan().getList().tongCong(),hd.getNgay()});
          }
     }
     
@@ -69,8 +68,6 @@ public class QlHoaDon extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         btnTim = new javax.swing.JButton();
         txtTim = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtBan = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,11 +93,11 @@ public class QlHoaDon extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã hóa đơn", "Thành Tiền", "Ngày"
+                "Mã hóa đơn", "Mã bàn", "Thành Tiền", "Ngày"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -154,12 +151,6 @@ public class QlHoaDon extends javax.swing.JFrame {
 
         txtTim.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel2.setText("Mã bàn:");
-
-        txtBan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtBan.setEnabled(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,24 +164,22 @@ public class QlHoaDon extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtTim, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnTim))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(txtTim, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtBan, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTongCong, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                                .addComponent(btnTim)
+                                .addGap(145, 145, 145))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtTongCong))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(44, 44, 44)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,9 +199,7 @@ public class QlHoaDon extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtTongCong, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTongCong, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
@@ -238,7 +225,6 @@ public class QlHoaDon extends javax.swing.JFrame {
             stt++;
         }
         txtTongCong.setText(String.valueOf(lHoaDon.getList().get(r).getBan().getList().tongCong()));
-        txtBan.setText(String.valueOf(lHoaDon.getList().get(r).getBan().getMaBan()));
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this, "Lỗi");
         }
@@ -305,13 +291,11 @@ public class QlHoaDon extends javax.swing.JFrame {
     private javax.swing.JButton btnTim;
     private javax.swing.JButton btn_quaylai;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblDoUong;
     private javax.swing.JTable tblHoaDon;
-    private javax.swing.JTextField txtBan;
     private javax.swing.JTextField txtTim;
     private javax.swing.JTextField txtTongCong;
     // End of variables declaration//GEN-END:variables
