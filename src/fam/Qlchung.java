@@ -35,6 +35,7 @@ public class Qlchung extends javax.swing.JFrame {
         btn_douong = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btn_thoat = new javax.swing.JButton();
+        btnThucDon = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,6 +45,11 @@ public class Qlchung extends javax.swing.JFrame {
         btn_ban.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_banMouseClicked(evt);
+            }
+        });
+        btn_ban.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_banActionPerformed(evt);
             }
         });
 
@@ -82,6 +88,20 @@ public class Qlchung extends javax.swing.JFrame {
             }
         });
 
+        btnThucDon.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        btnThucDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/list.png"))); // NOI18N
+        btnThucDon.setText("Thực Đơn");
+        btnThucDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnThucDonMouseClicked(evt);
+            }
+        });
+        btnThucDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThucDonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,30 +112,37 @@ public class Qlchung extends javax.swing.JFrame {
                         .addGap(189, 189, 189)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
+                        .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_ban, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3))
-                        .addGap(82, 82, 82)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_douong, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                            .addComponent(btn_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(113, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_ban, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnThucDon))
+                                .addGap(82, 82, 82)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton3)
+                                    .addComponent(btn_douong, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(125, 125, 125)
+                                .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addGap(52, 52, 52)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_ban, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_douong, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(78, Short.MAX_VALUE))
+                    .addComponent(btnThucDon, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,7 +168,7 @@ public class Qlchung extends javax.swing.JFrame {
     private void btn_banMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_banMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        Thucdon qlban = new  Thucdon();
+        QLBan qlban = new  QLBan();
         qlban.setVisible(true);
     }//GEN-LAST:event_btn_banMouseClicked
 
@@ -162,6 +189,20 @@ public class Qlchung extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnThucDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThucDonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThucDonMouseClicked
+
+    private void btn_banActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_banActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_banActionPerformed
+
+    private void btnThucDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThucDonActionPerformed
+        Thucdon thucDon = new Thucdon();
+        thucDon.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnThucDonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,6 +241,7 @@ public class Qlchung extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnThucDon;
     private javax.swing.JButton btn_ban;
     private javax.swing.JButton btn_douong;
     private javax.swing.JButton btn_thoat;
