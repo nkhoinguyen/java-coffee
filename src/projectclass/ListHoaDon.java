@@ -74,6 +74,16 @@ public class ListHoaDon {
         return "";
     }
     
+    public ListHoaDon findDate(String date) {
+        ListHoaDon lhd = new ListHoaDon();
+        for (HoaDon hoaDon : list) {
+            if (hoaDon.getNgay().split(" ")[0].equals(date)) {
+                lhd.insert(hoaDon);
+            }
+        }
+        return lhd;
+    }
+    
     public void ghiFile(){
         ReadWriteHoaDon rd = new ReadWriteHoaDon();
         rd.Write(list,fileName);
